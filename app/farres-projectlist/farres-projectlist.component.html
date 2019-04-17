@@ -1,0 +1,40 @@
+<div class="container">
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Type</th>
+        <th scope="col">Project Name</th>
+        <!----<th scope="col">Notes</th>-->
+        <th scope="col">Start Date</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos">
+        <th scope="row" (click)='onSelect(todo)'>{{todo.id}}</th>
+        <td>{{todo.type}}</td>
+        <td>{{todo.projectname}}</td>
+        <!----<td>{{todo.notes}}</td>-->
+        <td>{{todo.startdate | date: shortDate}}</td>
+        <td>{{todo.status | uppercase}}</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+ 
+ <div class="container" *ngIf="selectedTodo">
+  <div class="card" style="width: 50%; float: left">
+    <div class="card-header">{{selectedTodo.type}} - Details</div>
+    <div class="card-body">
+      <p class="card-text">Project Name : {{selectedTodo.projectname}}</p>
+      <p class="card-text">Notes : {{selectedTodo.notes}}</p>
+      <p class="card-text">Start Date : {{selectedTodo.startdate | date: shortDate}}</p>
+      <p class="card-text">Status : {{selectedTodo.status | uppercase}}</p>
+    </div>
+  </div>
+ </div>
+ 
+ 
+ <app-farres-projectdetails [todo]="selectedTodo"></app-farres-projectdetails>
+ 
